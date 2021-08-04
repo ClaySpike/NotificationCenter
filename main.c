@@ -30,13 +30,13 @@ int main(int argc, char const *argv[]) {
   SDL_Color color = {255, 255, 255};
 
   SDL_Surface *weekdays_s[] = {
-      TTF_RenderUNICODE_Blended(kosugi, (const unsigned short *)&L"日", color),
-      TTF_RenderUNICODE_Blended(kosugi, (const unsigned short *)&L"月", color),
-      TTF_RenderUNICODE_Blended(kosugi, (const unsigned short *)&L"火", color),
-      TTF_RenderUNICODE_Blended(kosugi, (const unsigned short *)&L"水", color),
-      TTF_RenderUNICODE_Blended(kosugi, (const unsigned short *)&L"木", color),
-      TTF_RenderUNICODE_Blended(kosugi, (const unsigned short *)&L"金", color),
-      TTF_RenderUNICODE_Blended(kosugi, (const unsigned short *)&L"土", color)};
+      TTF_RenderUNICODE_Blended(kosugi, (const unsigned short *)L"日", color),
+      TTF_RenderUNICODE_Blended(kosugi, (const unsigned short *)L"月", color),
+      TTF_RenderUNICODE_Blended(kosugi, (const unsigned short *)L"火", color),
+      TTF_RenderUNICODE_Blended(kosugi, (const unsigned short *)L"水", color),
+      TTF_RenderUNICODE_Blended(kosugi, (const unsigned short *)L"木", color),
+      TTF_RenderUNICODE_Blended(kosugi, (const unsigned short *)L"金", color),
+      TTF_RenderUNICODE_Blended(kosugi, (const unsigned short *)L"土", color)};
   SDL_Rect rect = {0, 0, weekdays_s[0]->w, weekdays_s[0]->h};
   SDL_Texture *weekdays_t[7];
   for (size_t i = 0; i < 7; i++) {
