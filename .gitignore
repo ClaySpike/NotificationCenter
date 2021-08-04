@@ -53,3 +53,7 @@ dkms.conf
 
 # MacOS things
 .DS_Store
+settings.json
+
+# Dependencies
+*.ttf

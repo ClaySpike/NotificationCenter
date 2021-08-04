@@ -8,7 +8,7 @@ OBJS := $(SRCS:.c=.o)
 COMPILER_FLAGS := -g -Wall
 
 #LINKER_FLAGS shows which libraries to link against
-LINKER_FLAGS := -I include -lSDL2-2.0.0 -lSDL_ttf
+LINKER_FLAGS := -I include -lSDL2-2.0.0 -lSDL2_ttf
 
 #EXEC_FILE shows which name to make the executable
 EXEC_FILE := main.out
