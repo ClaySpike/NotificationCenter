@@ -125,6 +125,7 @@ int main(int argc, char const *argv[]) {
                    &c);
     c.x += c.w;
 
+    // Printing whether am or pm
     if (pm) {
       SDL_QueryTexture(ascii['P' - 33], NULL, NULL, &c.w, &c.h);
       SDL_RenderCopy(renderer, ascii['P' - 33], NULL, &c);
@@ -139,6 +140,50 @@ int main(int argc, char const *argv[]) {
       SDL_QueryTexture(ascii['M' - 33], NULL, NULL, &c.w, &c.h);
       SDL_RenderCopy(renderer, ascii['M' - 33], NULL, &c);
       c.x += c.w;
+    }
+
+    // Printing the Date
+    c.x = SCREEN.w;
+    if (cur_loc_time->tm_mday > 9) {
+      SDL_QueryTexture(ascii['0' + cur_loc_time->tm_mday % 10 - 33], NULL, NULL,
+                       &c.w, &c.h);
+      c.x -= c.w;
+      SDL_RenderCopy(renderer, ascii['0' + cur_loc_time->tm_mday % 10 - 33],
+                     NULL, &c);
+      SDL_QueryTexture(ascii['0' + cur_loc_time->tm_mday / 10 - 33], NULL, NULL,
+                       &c.w, &c.h);
+      c.x -= c.w;
+      SDL_RenderCopy(renderer, ascii['0' + cur_loc_time->tm_mday / 10 - 33],
+                     NULL, &c);
+    } else {
+      SDL_QueryTexture(ascii['0' + cur_loc_time->tm_mday - 33], NULL, NULL,
+                       &c.w, &c.h);
+      c.x -= c.w;
+      SDL_RenderCopy(renderer, ascii['0' + cur_loc_time->tm_mday - 33], NULL,
+                     &c);
+    }
+
+    SDL_QueryTexture(ascii['/' - 33], NULL, NULL, &c.w, &c.h);
+    c.x -= c.w;
+    SDL_RenderCopy(renderer, ascii['/' - 33], NULL, &c);
+
+    if (cur_loc_time->tm_mday > 9) {
+      SDL_QueryTexture(ascii['0' + cur_loc_time->tm_mon % 10 - 33], NULL, NULL,
+                       &c.w, &c.h);
+      c.x -= c.w;
+      SDL_RenderCopy(renderer, ascii['0' + cur_loc_time->tm_mon % 10 - 33],
+                     NULL, &c);
+      SDL_QueryTexture(ascii['0' + cur_loc_time->tm_mon / 10 - 33], NULL, NULL,
+                       &c.w, &c.h);
+      c.x -= c.w;
+      SDL_RenderCopy(renderer, ascii['0' + cur_loc_time->tm_mon / 10 - 33],
+                     NULL, &c);
+    } else {
+      SDL_QueryTexture(ascii['0' + cur_loc_time->tm_mon - 33], NULL, NULL, &c.w,
+                       &c.h);
+      c.x -= c.w;
+      SDL_RenderCopy(renderer, ascii['0' + cur_loc_time->tm_mon - 33], NULL,
+                     &c);
     }
 
     SDL_RenderPresent(renderer);
