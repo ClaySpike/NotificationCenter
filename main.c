@@ -69,6 +69,7 @@ int main(int argc, char const *argv[]) {
     cur_loc_time->tm_year +=
         1900;  // Might have some problems in the year 2147481747 so deal with
                // that if you are from that year I guess
+    cur_loc_time->tm_mon++;
 
     SDL_RenderClear(renderer);
 
@@ -217,8 +218,7 @@ int main(int argc, char const *argv[]) {
     } else {
       num_days_in_month = 31;
     }
-    int first_wday =
-        dayofweek(cur_loc_time->tm_year, cur_loc_time->tm_mon + 1, 1);
+    int first_wday = dayofweek(cur_loc_time->tm_year, cur_loc_time->tm_mon, 1);
     int num_week_rows = ceil(((double)num_days_in_month + first_wday) / 7);
     int cal_day_height = (480 - 66) / num_week_rows;
     cal.w = 66;  // 462 / 7
@@ -287,7 +287,6 @@ int main(int argc, char const *argv[]) {
 
 // From
 // https://en.wikipedia.org/wiki/Determination_of_the_day_of_the_week#Implementation-dependent_methods
-// Under Sakamoto's methods
 int dayofweek(int y, int m, int d) /* 1 <= m <= 12,  y > 1752 (in the U.K.) */
 {
   static int t[] = {0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4};
